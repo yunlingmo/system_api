@@ -11,7 +11,7 @@ exports.login = async(req, res, next) => {
 /* 用户注册 */
 exports.register = async(req, res, next) => {
     try {
-      console.log(req.body)
+      console.log(req.body) 
       res.send('用户注册');
     } catch (error) {
       next(error)
