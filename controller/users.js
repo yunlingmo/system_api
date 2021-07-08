@@ -3,7 +3,6 @@ const { User } = require('../models')
 /* 用户登录 */
 exports.login = async(req, res, next) => {
     try {
-        JSON.parse('ass')
       res.send('用户登录123');
     } catch (error) {
       next(error)
