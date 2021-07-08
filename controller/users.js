@@ -12,8 +12,9 @@ exports.login = async(req, res, next) => {
 /* 用户注册 */
 exports.register = async(req, res, next) => {
     try {
-      console.log(req.body) 
-      res.send('用户注册');
+      console.log(req.body)
+      const user = await User.create(req.body)
+      res.status(201).json({user});
     } catch (error) {
       next(error)
     }
