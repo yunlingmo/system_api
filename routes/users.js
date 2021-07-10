@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const uesrCtrl = require("../controller/users");
 const userValidate = require("../validator/user");
+const auth = require("../middleware/auth")
 
 /* 用户登录 */
 router.post("/users/login", userValidate.login, uesrCtrl.login);
@@ -10,9 +11,9 @@ router.post("/users/login", userValidate.login, uesrCtrl.login);
 router.post("/users", userValidate.register, uesrCtrl.register);
 
 /* 获取当前用户*/
-router.get("/user", uesrCtrl.getCurrentUser);
+router.get("/user", auth, uesrCtrl.getCurrentUser);
 
 /* 修改当前用户信息*/
-router.put("/user", uesrCtrl.updateCurrentUser);
+router.put("/user", auth, uesrCtrl.updateCurrentUser);
 
 module.exports = router;
