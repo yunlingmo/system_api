@@ -5,7 +5,6 @@ const jwt = require("../util/jwt");
 /* 用户登录 */
 exports.login = async (req, res, next) => {
   try {
-    // 数据验证
     const user = req.user;
       const token = jwt.sign({userId: user.id});
       delete user.password;
@@ -23,7 +22,6 @@ exports.login = async (req, res, next) => {
 /* 用户注册 */
 exports.register = async (req, res, next) => {
   try {
-    console.log(req.body);
     let user = await User.create(req.body);
     const userJson = user.toJSON();
     delete userJson.password;
@@ -36,20 +34,22 @@ exports.register = async (req, res, next) => {
 /* 获取当前用户信息 */
 exports.getCurrentUser = async (req, res, next) => {
   try {
-    console.log('wwwwww', req.query)
-    const id = req.query.id;
-    // const user = await User.findOne({ where: { username } });
-    const users = await User.findByPk(id);
-    res.json({ users });
+    const id = req.userId;
+    const user = await User.findByPk(id,{ attributes: { exclude: ['password'] } });
+    res.json({ user });
   } catch (error) {
     next(error);
   }
 };
 
-/* 获取当前用户信息 */
+/* 更新当前用户信息 */
 exports.updateCurrentUser = async (req, res, next) => {
   try {
-    res.send("获取当前用户信息");
+    const user = await User.findByPk(req.userId);
+    user.update(req.body)
+    const userJson = user.toJSON();
+    delete userJson.password;
+    res.json({ user: userJson });
   } catch (error) {
     next(error);
   }

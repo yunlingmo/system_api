@@ -11,5 +11,6 @@ module.exports = async (req, res, next) => {
     if(!result){
         return res.status(401).end();
     }
+    req.userId= result.userId
     next();
 };
