@@ -1,16 +1,22 @@
 const { User } = require("../models");
-const mds = require("../util/md5");
 const jwt = require("../util/jwt");
+const moment = require("moment")
 
 /* 用户登录 */
 exports.login = async (req, res, next) => {
   try {
     const user = req.user;
-      const token = jwt.sign({userId: user.id});
-      delete user.password;
+      const userJson = user.toJSON();
+      const token = jwt.sign({userId: userJson.id});
+      const lastLogintime = userJson.thisLogintime;
+      user.update({
+        lastLogintime,
+        thisLogintime: moment().format('YYYY-MM-DD, HH:mm:ss')
+      })
+      delete userJson.password;
       res.status(200).json({
         data: {
-          user,
+          user: userJson,
           token
         },
       });

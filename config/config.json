@@ -4,7 +4,15 @@
     "password": "mo123456",
     "database": "vuemangesystem_development",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "timezone": "+08:00",
+    "define": {
+      "timestamps": true
+    },
+    "dialectOptions": {
+      "dateStrings": true,
+      "typeCast": true
+    }
   },
   "test": {
     "username": "root",

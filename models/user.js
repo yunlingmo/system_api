@@ -17,10 +17,13 @@ module.exports = (sequelize, DataTypes) => {
       },
       bio: DataTypes.TEXT,
       image: DataTypes.STRING,
+      lastLogintime: DataTypes.DATE,
+      thisLogintime: DataTypes.DATE,
     },
     {
       sequelize,
-      modelName: "User"
+      modelName: "User",
+      force: true
     },
   );
   return User;

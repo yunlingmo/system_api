@@ -31,7 +31,7 @@ exports.login = [
       if (user === null) {
         return Promise.reject("用户名不存在");
       } else {
-        req.user = user.toJSON()
+        req.user = user
       }
     }),
   ]),

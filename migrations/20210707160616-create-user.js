@@ -27,6 +27,14 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      lastLogintime: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      thisLogintime: {
+        allowNull: false,
+        type: Sequelize.DATE
       }
     });
   },
