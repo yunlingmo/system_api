@@ -14,6 +14,6 @@ router.post("/users", userValidate.register, uesrCtrl.register);
 router.get("/user", auth, uesrCtrl.getCurrentUser);
 
 /* 修改当前用户信息*/
-router.put("/user", auth, uesrCtrl.updateCurrentUser);
+router.put("/user", uesrCtrl.updateCurrentUser);
 
 module.exports = router;
