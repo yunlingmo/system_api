@@ -7,12 +7,10 @@ const upload = multer({ dest: '../public/images' })
 /* 文件上传 */
 exports.upload = async (req, res, next) => {
   try {
-    const imgpath = path.resolve(__dirname, '..', req.file.path); 
     console.log('xxx', req.file)
-    const fileInfo = Object.assign({imgpath}, req.file)
     res.status(200).json({
       data: {
-        file: fileInfo,
+        file: req.file.path,
       },
     });
   } catch (error) {
