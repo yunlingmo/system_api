@@ -52,14 +52,17 @@ exports.getCurrentUser = async (req, res, next) => {
 /* 更新当前用户信息 */
 exports.updateCurrentUser = async (req, res, next) => {
   try {
-    console.log('re44444444444444q', req.body)
-    const user = await User.update(req.body, {
+    const id = req.body.id;
+    const upUser = await User.update(req.body, {
       where: {
-        id: req.body.id
+        id,
       },
-      attributes: { exclude: ['password'] }
     });
-    res.json({ user });
+    if(upUser[0] > 0){
+      const user = await User.findByPk(id,{ attributes: { exclude: ['password'] } });
+      res.json({ user });
+    }
+    res.json({ user: null});
   } catch (error) {
     next(error);
   }

@@ -35,7 +35,13 @@ module.exports = {
       thisLogintime: {
         allowNull: false,
         type: Sequelize.DATE
-      }
+      },
+      gender: {
+        type: Sequelize.STRING
+      },
+      birdthday: {
+        type: Sequelize.STRING
+      },
     });
   },
   down: async (queryInterface, Sequelize) => {
