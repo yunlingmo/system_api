@@ -21,6 +21,8 @@ module.exports = (sequelize, DataTypes) => {
       thisLogintime: DataTypes.DATE,
       gender: DataTypes.STRING,
       birdthday: DataTypes.STRING,
+      loginCity: DataTypes.STRING,
+      lastLoginCity: DataTypes.STRING,
     },
     {
       sequelize,

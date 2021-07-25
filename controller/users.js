@@ -10,9 +10,12 @@ exports.login = async (req, res, next) => {
       const userJson = user.toJSON();
       const token = jwt.sign({userId: userJson.id});
       const lastLogintime = userJson.thisLogintime;
+      const lastLoginCity = userJson.loginCity;
       user.update({
         lastLogintime,
-        thisLogintime: moment().format('YYYY-MM-DD, HH:mm:ss')
+        thisLogintime: moment().format('YYYY-MM-DD, HH:mm:ss'),
+        lastLoginCity,
+        loginCity: req.body.loginCity
       })
       delete userJson.password;
       res.status(200).json({
