@@ -8,8 +8,8 @@ const upload = require("../util/multerUtil")
 /* 文件上传 */
 router.post("/upload",  upload('public/images/portrait').single('file'), commonCtrl.upload);
 
-/* 图片访问 */
-router.get("/uploads/*", commonCtrl.uploads);
+/* 导出文件excel */
+router.post("/exportExcel", commonCtrl.exportExcel);
 
 
 module.exports = router;

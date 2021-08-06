@@ -61,6 +61,7 @@ exports.updateCurrentUser = async (req, res, next) => {
         id,
       },
     });
+
     if(upUser[0] > 0){
       const user = await User.findByPk(id,{ attributes: { exclude: ['password'] } });
       res.json({ user });

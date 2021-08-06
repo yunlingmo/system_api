@@ -29,11 +29,11 @@ module.exports = {
         type: Sequelize.DATE
       },
       lastLogintime: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE
       },
       thisLogintime: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE
       },
       gender: {
